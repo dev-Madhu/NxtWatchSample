@@ -17,6 +17,7 @@ dependencies:
   react-loader-spinner: 4.0.0_react-dom@17.0.1+react@17.0.1
   react-player: 2.9.0_react@17.0.1
   react-router-dom: 5.2.0_react@17.0.1
+  react-tabs: 5.1.0_react@17.0.1
   reactjs-popup: 2.0.5_react-dom@17.0.1+react@17.0.1
   styled-components: 5.3.0_react-dom@17.0.1+react@17.0.1
   surge: 0.23.0
@@ -5148,6 +5149,12 @@ packages:
       node: '>=0.8'
     resolution:
       integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==
+  /clsx/1.1.1:
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==
   /co/4.6.0:
     dev: true
     engines:
@@ -12285,6 +12292,16 @@ packages:
       react: ^16.0.0 || ^17.0.0 || ^18.0.0
     resolution:
       integrity: sha512-oScf2FqQ9LFVQgA73vr86xl2NaOIX73rh+YFqcOp68CWj56tSfgtGKrEbyhCj0rSijyG9M1CYprTh39fBi5hzA==
+  /react-tabs/5.1.0_react@17.0.1:
+    dependencies:
+      clsx: 1.1.1
+      prop-types: 15.8.1
+      react: 17.0.1
+    dev: false
+    peerDependencies:
+      react: ^18.0.0
+    resolution:
+      integrity: sha512-jsPVEPuhG7JljTo8Q4ujz4UKRpG90nHlDClAdvV5KrLxCHU+MT/kg7dmhq8fDv8+frciDtaYeFFlTVRLm4N5AQ==
   /react-test-renderer/17.0.2_react@17.0.1:
     dependencies:
       object-assign: 4.1.1
@@ -15129,6 +15146,7 @@ specifiers:
   react-player: 2.9.0
   react-router-dom: 5.2.0
   react-scripts: 4.0.3
+  react-tabs: 5.1.0
   reactjs-popup: 2.0.5
   styled-components: 5.3.0
   surge: 0.23.0

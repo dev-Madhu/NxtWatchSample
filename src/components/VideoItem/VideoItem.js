@@ -5,6 +5,7 @@ import './VideoItem.css'
 
 const VideoItem = props => {
   const {videoDetails} = props
+  console.log(videoDetails)
   const {
     id,
     title,
@@ -25,7 +26,7 @@ const VideoItem = props => {
           <p className="name">{name}</p>
           <div className="views-box">
             <p className="name">{viewCount}</p>
-            <li className="published">{publishedDate}</li>
+            <p className="published">{publishedDate}</p>
           </div>
         </div>
       </div>

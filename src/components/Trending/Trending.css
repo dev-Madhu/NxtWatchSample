@@ -1,0 +1,73 @@
+.blog-list-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 90%;
+}
+
+.loader-container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 50px;
+  align-items: center;
+  min-height: 60vh;
+}
+.failure-text {
+  color: #0f0f0f;
+  font-family: 'Roboto';
+  margin-bottom: 10px;
+}
+.failure-note {
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'Roboto';
+  color: #94a3b8;
+}
+
+.failure-btn {
+  padding: 8px 16px;
+  background-color: #4f46e5;
+  color: white;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.failure-container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.trending-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.trending-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 20px;
+  color: #fff;
+  font-family: 'Roboto';
+}
+.fire-icon {
+  background-color: #0f0f0f;
+  border-radius: 40px;
+  margin-left: 20px;
+}
+
+.trending-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: #212121;
+}

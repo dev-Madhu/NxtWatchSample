@@ -1,0 +1,14 @@
+
+.video-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #ebebeb;
+  width: 100%;
+  margin-top: 0px;
+  padding: 32px;
+}
+
+.video-layout{
+    display: flex;
+    flex-direction: row;
+}

@@ -1,31 +1,13 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 
-import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
-import {AiFillHome, AiOutlineSearch} from 'react-icons/ai'
-import {HiFire} from 'react-icons/hi'
-import {SiYoutubegaming} from 'react-icons/si'
-
-import HeaderRoute from '../HeaderRoute'
+import {AiOutlineSearch} from 'react-icons/ai'
 import VideoItem from '../VideoItem/VideoItem'
+import TabItem from '../TabItem'
 import './index.css'
 
-import {
-  SelectionsContainer,
-  SelectionBox,
-  SelectionItem,
-  SectionCont,
-  ResponsiveContainer,
-  HomeContainer,
-  TypeName,
-  SocialWebsites,
-  SocialBox,
-  Heading,
-  Image,
-  Tagline,
-  Icon,
-} from './StyledComponents'
+import {ResponsiveContainer, HomeContainer} from './StyledComponents'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -153,63 +135,6 @@ class Home extends Component {
     )
   }
 
-  renderTypeOfSections = () => (
-    <SelectionsContainer>
-      <SectionCont>
-        <SelectionBox>
-          <SelectionItem>
-            <Link className="section-link" to="/Home">
-              <AiFillHome color="#212121" size="30" />
-              <TypeName>Home</TypeName>
-            </Link>
-          </SelectionItem>
-          <SelectionItem>
-            <Link className="section-link" to="/trending">
-              <HiFire color="#212121" size="30" />
-              <TypeName>Trending</TypeName>
-            </Link>
-          </SelectionItem>
-          <SelectionItem>
-            <Link className="section-link" to="/gaming">
-              <SiYoutubegaming color="#212121" size="30" />
-              <TypeName>Gaming</TypeName>
-            </Link>
-          </SelectionItem>
-          <SelectionItem>
-            <Link className="section-link" to="/saved-videos">
-              <AiFillHome color="#212121" size="30" />
-              <TypeName>Saved videos</TypeName>
-            </Link>
-          </SelectionItem>
-        </SelectionBox>
-        <SocialWebsites>
-          <Heading>CONTACT US</Heading>
-          <SocialBox>
-            <Icon>
-              <Image
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
-                alt="facebook logo"
-              />
-            </Icon>
-            <Icon>
-              <Image
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-twitter-logo-img.png"
-                alt="twitter logo"
-              />
-            </Icon>
-            <Icon>
-              <Image
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
-                alt=" linked in logo"
-              />
-            </Icon>
-          </SocialBox>
-          <Tagline>Enjoy! Now to see your channels and recommendations</Tagline>
-        </SocialWebsites>
-      </SectionCont>
-    </SelectionsContainer>
-  )
-
   renderLoadingView = () => (
     <div className="loader-container">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
@@ -253,15 +178,13 @@ class Home extends Component {
   }
 
   render() {
-    const {homeVideos, apiStatus} = this.state
-    console.log(homeVideos)
+    const {apiStatus} = this.state
     console.log(apiStatus)
     return (
       <>
-        <HeaderRoute />
         <HomeContainer>
           <ResponsiveContainer>
-            {this.renderTypeOfSections()}
+            <TabItem />
             {this.renderBannerView()}
           </ResponsiveContainer>
         </HomeContainer>
