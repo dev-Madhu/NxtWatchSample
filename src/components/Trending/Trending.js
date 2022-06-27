@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {HiFire} from 'react-icons/hi'
@@ -7,6 +8,7 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import TrendingItem from '../TrendingItem/TrendingItem'
 
 import TabItem from '../TabItem'
+import HeaderRoute from '../HeaderRoute'
 import './Trending.css'
 
 const apiStatusConstants = {
@@ -54,13 +56,14 @@ class Trending extends Component {
         apiStatus: apiStatusConstants.success,
       })
     }
-    if (response.status === 401) {
+    if (response.status === 404) {
+      console.log(response.status)
       this.setState({apiStatus: apiStatusConstants.failure})
     }
   }
 
   renderLoadingView = () => (
-    <div className="loader-container">
+    <div className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   )
@@ -77,20 +80,18 @@ class Trending extends Component {
         We are having some trouble to complete your request
       </p>
       <p className="failure-note">Please try again</p>
-      <button
-        className="failure-btn"
-        type="button"
-        onClick={this.onClickSearch}
-      >
-        Retry
-      </button>
+      <Link to="/trending">
+        <button className="failure-btn" type="button">
+          Retry
+        </button>
+      </Link>
     </div>
   )
 
   renderTrendingVideos = () => {
     const {trendingData} = this.state
     return (
-      <div className="blog-list-container">
+      <ul className="blog-list-container">
         <div className="trending-header">
           <div className="fire-icon">
             <HiFire color=" #ff0000" size="30" />
@@ -100,7 +101,7 @@ class Trending extends Component {
         {trendingData.map(item => (
           <TrendingItem blogData={item} key={item.id} />
         ))}
-      </div>
+      </ul>
     )
   }
 
@@ -120,10 +121,13 @@ class Trending extends Component {
 
   render() {
     return (
-      <div className="trending-box">
-        <TabItem />
-        {this.renderAllViews()}
-      </div>
+      <>
+        <HeaderRoute />
+        <div className="trending-box">
+          <TabItem />
+          {this.renderAllViews()}
+        </div>
+      </>
     )
   }
 }

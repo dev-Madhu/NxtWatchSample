@@ -1,8 +1,11 @@
 import {Component} from 'react'
+import {Link} from 'react-router-dom'
+import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import VideoPlayer from '../VideoPlayer'
 import './VideoItemDetails.css'
 import TabItem from '../TabItem'
+import HeaderRoute from '../HeaderRoute'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -64,12 +67,9 @@ class VideoItemDetails extends Component {
     }
   }
 
-  render() {
-    const {videoItemData, apiStatus} = this.state
-    const {videoUrl} = videoItemData
-    console.log(videoItemData)
-    console.log(videoUrl)
-    console.log(apiStatus)
+  renderVideos = () => {
+    const {videoItemData} = this.state
+
     return (
       <div className="video-layout">
         <TabItem />
@@ -77,6 +77,55 @@ class VideoItemDetails extends Component {
           <VideoPlayer videoInfo={videoItemData} />
         </div>
       </div>
+    )
+  }
+
+  renderLoadingView = () => (
+    <div className="loader-container" data-testid="loader">
+      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+    </div>
+  )
+
+  renderFailureView = () => (
+    <div className="failure-container">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+        alt="failure view"
+        className="failure-image"
+      />
+      <h1 className="failure-text">Oops! Something Went Wrong</h1>
+      <p className="failure-note">
+        We are having some trouble to complete your request
+      </p>
+      <p className="failure-note">Please try again</p>
+      <Link to="/trending">
+        <button className="failure-btn" type="button">
+          Retry
+        </button>
+      </Link>
+    </div>
+  )
+
+  renderAllViews = () => {
+    const {apiStatus} = this.state
+    switch (apiStatus) {
+      case apiStatusConstants.success:
+        return this.renderVideos()
+      case apiStatusConstants.failure:
+        return this.renderFailureView()
+      case apiStatusConstants.inProgress:
+        return this.renderLoadingView()
+      default:
+        return null
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <HeaderRoute />
+        {this.renderAllViews()}
+      </>
     )
   }
 }

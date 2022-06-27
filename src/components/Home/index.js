@@ -1,10 +1,12 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-
+import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import {AiOutlineSearch} from 'react-icons/ai'
+import {IoMdClose} from 'react-icons/io'
 import VideoItem from '../VideoItem/VideoItem'
 import TabItem from '../TabItem'
+import HeaderRoute from '../HeaderRoute'
 import './index.css'
 
 import {ResponsiveContainer, HomeContainer} from './StyledComponents'
@@ -20,6 +22,7 @@ class Home extends Component {
   state = {
     homeVideos: [],
     searchInput: '',
+    showComponent: false,
     apiStatus: apiStatusConstants.initial,
   }
 
@@ -57,22 +60,27 @@ class Home extends Component {
       this.setState({
         homeVideos: updatedData,
         apiStatus: apiStatusConstants.success,
+        searchInput: '',
       })
     }
-    if (response.status === 401) {
+    if (response.status === 404) {
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })
     }
   }
 
+  onClickCloseBtn = () => {
+    this.setState(prevState => ({showComponent: !prevState.showComponent}))
+  }
+
   onChangeSearchInput = event => {
     this.setState({searchInput: event.target.value})
   }
 
-  onClickSearch = () => {
-    this.getHomeVideos()
-    this.setState({searchInput: ''})
+  onClickSearchIcon = () => {
+    const {searchInput} = this.state
+    this.setState({searchInput}, this.getHomeVideos)
   }
 
   renderVideosView = () => {
@@ -91,7 +99,8 @@ class Home extends Component {
           <button
             type="button"
             className="search-btn"
-            onClick={this.onClickSearch}
+            data-testid="searchButton"
+            onClick={this.onClickSearchIcon}
           >
             <AiOutlineSearch size="20" />
           </button>
@@ -102,26 +111,39 @@ class Home extends Component {
     )
   }
 
-  renderBannerView = () => (
-    <div className="main-view">
-      <div className="banner-view">
-        <div className="banner-box">
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-            className="logo-theme"
-            alt="website logo"
-          />
-          <p className="banner-description">
-            Buy Nxt Watch Premium prepaid plans with UPI
-          </p>
-          <button type="button" className="get-btn">
-            GET IT KNOW
-          </button>
-        </div>
+  renderBannerView = () => {
+    const {showComponent} = this.state
+    return (
+      <div className="main-view">
+        {!showComponent && (
+          <div className="banner-view" data-testid="banner">
+            <button
+              className="close-btn"
+              type="button"
+              data-testid="close"
+              onClick={this.onClickCloseBtn}
+            >
+              <IoMdClose size="30" color="#231f20" />
+            </button>
+            <div className="banner-box">
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                className="logo-theme"
+                alt="nxt watch logo"
+              />
+              <p className="banner-description">
+                Buy Nxt Watch Premium prepaid plans with UPI
+              </p>
+              <button type="button" className="get-btn">
+                GET IT NOW
+              </button>
+            </div>
+          </div>
+        )}
+        <div className="main-video-section">{this.renderVideosView()}</div>
       </div>
-      <div className="main-video-section">{this.renderVideosView()}</div>
-    </div>
-  )
+    )
+  }
 
   renderHomeVideosView = () => {
     const {homeVideos} = this.state
@@ -136,7 +158,7 @@ class Home extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container">
+    <div className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   )
@@ -149,17 +171,12 @@ class Home extends Component {
         className="failure-image"
       />
       <h1 className="failure-text">Oops! Something Went Wrong</h1>
-      <p className="failure-note">
-        We are having some trouble to complete your request
-      </p>
-      <p className="failure-note">Please try again</p>
-      <button
-        className="failure-btn"
-        type="button"
-        onClick={this.onClickSearch}
-      >
-        Retry
-      </button>
+      <p className="failure-note"> We are having some trouble</p>
+      <Link to="/">
+        <button className="failure-btn" type="button">
+          Retry
+        </button>
+      </Link>
     </div>
   )
 
@@ -182,6 +199,7 @@ class Home extends Component {
     console.log(apiStatus)
     return (
       <>
+        <HeaderRoute />
         <HomeContainer>
           <ResponsiveContainer>
             <TabItem />

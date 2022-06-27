@@ -47,7 +47,7 @@ export const Icon = styled.div`
   margin-right: 10px;
   margin-bottom: 10px;
 `
-export const Heading = styled.h1`
+export const Heading = styled.p`
   font-size: 20px;
   font-weight: bold;
   font-family: 'Roboto';

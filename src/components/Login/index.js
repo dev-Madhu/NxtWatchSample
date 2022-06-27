@@ -10,6 +10,7 @@ class Login extends Component {
     password: '',
     showSubmitError: false,
     errorMsg: '',
+    isChecked: false,
   }
 
   onChangeUsername = event => {
@@ -18,6 +19,10 @@ class Login extends Component {
 
   onChangePassword = event => {
     this.setState({password: event.target.value})
+  }
+
+  onChangeCheckBox = () => {
+    this.setState(prevState => ({isChecked: !prevState.isChecked}))
   }
 
   onSubmitSuccess = jwtToken => {
@@ -52,21 +57,32 @@ class Login extends Component {
   }
 
   renderPasswordField = () => {
-    const {password} = this.state
+    const {password, isChecked} = this.state
 
     return (
       <>
         <label className="input-label" htmlFor="password">
           PASSWORD
         </label>
-        <input
-          type="password"
-          id="password"
-          className="password-input-field"
-          value={password}
-          onChange={this.onChangePassword}
-          placeholder="Password"
-        />
+        {isChecked ? (
+          <input
+            type="text"
+            id="password"
+            className="password-input-field"
+            value={password}
+            onChange={this.onChangePassword}
+            placeholder="Password"
+          />
+        ) : (
+          <input
+            type="password"
+            id="password"
+            className="password-input-field"
+            value={password}
+            onChange={this.onChangePassword}
+            placeholder="Password"
+          />
+        )}
       </>
     )
   }
@@ -110,7 +126,12 @@ class Login extends Component {
           <div className="input-container">{this.renderUsernameField()}</div>
           <div className="input-container">{this.renderPasswordField()}</div>
           <div className="checkbox-section">
-            <input type="checkbox" className="check" id="input-checkbox" />
+            <input
+              type="checkbox"
+              className="check"
+              id="input-checkbox"
+              onChange={this.onChangeCheckBox}
+            />
             <label htmlFor="input-checkbox" className="show-password">
               Show Password
             </label>

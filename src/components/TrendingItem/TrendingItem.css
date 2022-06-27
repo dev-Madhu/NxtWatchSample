@@ -14,8 +14,9 @@
 @media screen and (min-width: 575px) {
   .item-container {
     flex-direction: row;
-    width: 660px;
-    height: 170px;
+    max-width: 700px;
+    width: 70%;
+    height: 180px;
     margin: 15px;
   }
 }
@@ -24,7 +25,7 @@
   width: 100%;
   border: 1px solid transparent;
   border-radius: 5px;
-  height: 170px;
+  height: 180px;
 }
 
 @media screen and (min-width: 575px) {
@@ -48,8 +49,8 @@
 }
 
 .item-topic {
-  color: #8e8e8e;
-  font-size: 14px;
+  color: #181818;
+  font-size: 18px;
 }
 
 .item-title {
@@ -69,6 +70,6 @@
   border-radius: 50%;
 }
 .author-name {
-  color: #8e8e8e;
+  color: #181818;
   font-size: 14px;
 }

@@ -47,6 +47,30 @@
 }
 
 .gaming-container {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+}
+
+.trending-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 20px;
+  color: #fff;
+  font-family: 'Roboto';
+}
+.fire-icon {
+  background-color: #0f0f0f;
+  border-radius: 40px;
+  height: 50px;
+  padding: 10px;
+  width: 50px;
+  margin-left: 20px;
+}
+
+.trending-header {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: #212121;
 }

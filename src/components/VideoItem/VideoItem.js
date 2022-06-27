@@ -1,11 +1,14 @@
-import {Link} from 'react-router-dom'
-import {formatDistanceToNow} from 'date-fns'
+import {Link, Redirect} from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 import './VideoItem.css'
 
 const VideoItem = props => {
+  const token = Cookies.get('jwt_token')
+  if (token === undefined) {
+    return <Redirect to="/login" />
+  }
   const {videoDetails} = props
-  console.log(videoDetails)
   const {
     id,
     title,
@@ -15,18 +18,17 @@ const VideoItem = props => {
     viewCount,
     publishedAt,
   } = videoDetails
-  const publishedDate = formatDistanceToNow(new Date(publishedAt))
   const renderVideoItem = () => (
     <>
-      <img src={thumbnailUrl} className="thumbnail" alt="thumbnail url" />
+      <img src={thumbnailUrl} className="thumbnail" alt="video thumbnail" />
       <div className="video-info">
-        <img src={imageUrl} className="cricket-logo" alt="name" />
+        <img src={imageUrl} className="cricket-logo" alt="profile" />
         <div className="match-details">
           <h1 className="title">{title}</h1>
           <p className="name">{name}</p>
           <div className="views-box">
             <p className="name">{viewCount}</p>
-            <p className="published">{publishedDate}</p>
+            <p className="published">{publishedAt}</p>
           </div>
         </div>
       </div>

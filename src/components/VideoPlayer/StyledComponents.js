@@ -4,7 +4,7 @@ export const VideoPlayerContainer = styled.div`
   width: 100%;
 `
 
-export const VideoTitle = styled.h1`
+export const VideoTitle = styled.p`
   color: #334155;
   font-family: 'Roboto';
   font-size: 24px;

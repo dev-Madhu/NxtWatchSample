@@ -21,6 +21,7 @@ dependencies:
   reactjs-popup: 2.0.5_react-dom@17.0.1+react@17.0.1
   styled-components: 5.3.0_react-dom@17.0.1+react@17.0.1
   surge: 0.23.0
+  uuid: 8.3.2
 devDependencies:
   babel-plugin-styled-components: 1.13.2_styled-components@5.3.0
   eslint-config-airbnb: 18.2.1
@@ -14446,7 +14447,6 @@ packages:
     resolution:
       integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
   /uuid/8.3.2:
-    dev: true
     hasBin: true
     resolution:
       integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
@@ -15150,3 +15150,4 @@ specifiers:
   reactjs-popup: 2.0.5
   styled-components: 5.3.0
   surge: 0.23.0
+  uuid: 8.3.2

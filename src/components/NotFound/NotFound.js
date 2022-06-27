@@ -1,5 +1,5 @@
 import TabItem from '../TabItem'
-
+import HeaderRoute from '../HeaderRoute'
 import './NotFound.css'
 
 const lightUrl =
@@ -7,6 +7,7 @@ const lightUrl =
 
 const NotFound = () => (
   <>
+    <HeaderRoute />
     <div className="not-found-view">
       <TabItem />
       <div className="not-found-container">

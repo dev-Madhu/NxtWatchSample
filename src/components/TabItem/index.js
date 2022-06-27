@@ -39,10 +39,9 @@ const TabItem = () => {
           />
         </Icon>
       </SocialBox>
-      <Tagline>Enjoy! Now to see your channels and recommendations</Tagline>
+      <Tagline>Enjoy! Now to see your channels and recommendations!</Tagline>
     </SocialWebsites>
   )
-  console.log('TabItem render')
 
   return (
     <SectionsContainer>
@@ -65,7 +64,7 @@ const TabItem = () => {
             <h1 className="head">Gaming</h1>
           </button>
         </Link>
-        <Link className="section-link" to="/savedvideos">
+        <Link className="section-link" to="/saved-videos">
           <button type="button" className="section-btn">
             <MdPlaylistAdd size="30" color="#181818" />
             <h1 className="head">Saved Videos</h1>

@@ -1,11 +1,13 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
+import {SiYoutubegaming} from 'react-icons/si'
 
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import GamingVideoItem from '../GamingVideoItem/GamingVideoItem'
 import './Gaming.css'
 import TabItem from '../TabItem'
+import HeaderRoute from '../HeaderRoute'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -49,13 +51,14 @@ class Gaming extends Component {
         apiStatus: apiStatusConstants.success,
       })
     }
-    if (response.status === 401) {
+
+    if (response.ok !== true) {
       this.setState({apiStatus: apiStatusConstants.failure})
     }
   }
 
   renderLoadingView = () => (
-    <div className="loader-container">
+    <div className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   )
@@ -85,11 +88,19 @@ class Gaming extends Component {
   renderGamingVideos = () => {
     const {gamingData} = this.state
     return (
-      <div className="game-list-container">
-        {gamingData.map(item => (
-          <GamingVideoItem gameData={item} key={item.id} />
-        ))}
-      </div>
+      <>
+        <div className="game-list-container">
+          <div className="trending-header">
+            <div className="fire-icon">
+              <SiYoutubegaming color=" #ff0000" size="30" />
+            </div>
+            <h1 className="trending-title">Gaming</h1>
+          </div>
+          {gamingData.map(item => (
+            <GamingVideoItem gameData={item} key={item.id} />
+          ))}
+        </div>
+      </>
     )
   }
 
@@ -109,10 +120,13 @@ class Gaming extends Component {
 
   render() {
     return (
-      <div className="gaming-container">
-        <TabItem />
-        {this.renderAllViews()}
-      </div>
+      <>
+        <HeaderRoute />
+        <div className="gaming-container">
+          <TabItem />
+          {this.renderAllViews()}
+        </div>
+      </>
     )
   }
 }
