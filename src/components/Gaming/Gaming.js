@@ -8,6 +8,7 @@ import GamingVideoItem from '../GamingVideoItem/GamingVideoItem'
 import './Gaming.css'
 import TabItem from '../TabItem'
 import HeaderRoute from '../HeaderRoute'
+import SavedContext from '../../context/SavedContext'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -85,24 +86,29 @@ class Gaming extends Component {
     </div>
   )
 
-  renderGamingVideos = () => {
-    const {gamingData} = this.state
-    return (
-      <>
-        <div className="game-list-container">
-          <div className="trending-header">
-            <div className="fire-icon">
-              <SiYoutubegaming color=" #ff0000" size="30" />
+  renderGamingVideos = () => (
+    <SavedContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        const {gamingData} = this.state
+        const gameBg = isDarkTheme ? 'game-bgColor' : null
+        const trendBg = isDarkTheme ? 'trend-headBg' : null
+        return (
+          <div className={`game-list-container ${gameBg}`}>
+            <div className={`trending-header ${trendBg}`}>
+              <div className="fire-icon">
+                <SiYoutubegaming color=" #ff0000" size="30" />
+              </div>
+              <h1 className="trending-title">Gaming</h1>
             </div>
-            <h1 className="trending-title">Gaming</h1>
+            {gamingData.map(item => (
+              <GamingVideoItem gameData={item} key={item.id} />
+            ))}
           </div>
-          {gamingData.map(item => (
-            <GamingVideoItem gameData={item} key={item.id} />
-          ))}
-        </div>
-      </>
-    )
-  }
+        )
+      }}
+    </SavedContext.Consumer>
+  )
 
   renderAllViews = () => {
     const {apiStatus} = this.state

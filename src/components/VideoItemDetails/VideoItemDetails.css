@@ -7,6 +7,9 @@
   margin-top: 0px;
   padding: 32px;
 }
+.video-bg{
+    background-color:#000000;
+}
 
 .video-layout{
     display: flex;

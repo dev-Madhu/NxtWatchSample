@@ -6,6 +6,7 @@ import VideoPlayer from '../VideoPlayer'
 import './VideoItemDetails.css'
 import TabItem from '../TabItem'
 import HeaderRoute from '../HeaderRoute'
+import SavedContext from '../../context/SavedContext'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -71,12 +72,20 @@ class VideoItemDetails extends Component {
     const {videoItemData} = this.state
 
     return (
-      <div className="video-layout">
-        <TabItem />
-        <div className="video-container">
-          <VideoPlayer videoInfo={videoItemData} />
-        </div>
-      </div>
+      <SavedContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          const containerBg = isDarkTheme ? 'video-bg' : null
+          return (
+            <div className="video-layout">
+              <TabItem />
+              <div className={`video-container ${containerBg}`}>
+                <VideoPlayer videoInfo={videoItemData} />
+              </div>
+            </div>
+          )
+        }}
+      </SavedContext.Consumer>
     )
   }
 

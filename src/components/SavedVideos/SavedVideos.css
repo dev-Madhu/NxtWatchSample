@@ -5,6 +5,11 @@
   align-items: center;
   background-color: #ebebeb;
   height: 100vh;
+  color:#0f0f0f;
+}
+.saved-bg{
+    background-color:#0f0f0f;
+    color:#fff;
 }
 
 .saved-img {
@@ -12,7 +17,6 @@
   top: 30%;
 }
 .saved-heading {
-  color: black;
   font-size: 36px;
   font-family: 'Roboto';
   font-weight: 700;
@@ -31,7 +35,6 @@
   font-size: 24px;
   font-weight: bold;
   margin-left: 20px;
-  color: #fff;
   font-family: 'Roboto';
 }
 .fire-icon {
@@ -48,11 +51,15 @@
   width: 100%;
   display: flex;
   align-items: center;
-  background-color: #212121;
+  background-color: #ebebeb;
 }
 
 .saved-list-container {
   display: flex;
   flex-direction: column;
   width: 90%;
+}
+
+.trend-headBg {
+  background-color: #212121;
 }

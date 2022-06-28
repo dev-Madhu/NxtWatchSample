@@ -14,7 +14,7 @@ const NotFound = () => (
         <img src={lightUrl} alt="not found" className="not-found-img" />
         <h1 className="not-found-heading">Page Not Found</h1>
         <p className="description">
-          We are sorry, the page you requested could not be found
+          we are sorry, the page you requested could not be found.
         </p>
       </div>
     </div>

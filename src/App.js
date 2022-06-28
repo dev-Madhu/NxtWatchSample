@@ -15,6 +15,11 @@ import SavedContext from './context/SavedContext'
 class App extends Component {
   state = {
     savedVideosList: [],
+    isDarkTheme: false,
+  }
+
+  toggleTheme = () => {
+    this.setState(prevState => ({isDarkTheme: !prevState.isDarkTheme}))
   }
 
   addVideoItem = product => {
@@ -25,11 +30,13 @@ class App extends Component {
   }
 
   render() {
-    const {savedVideosList} = this.state
+    const {savedVideosList, isDarkTheme} = this.state
     return (
       <SavedContext.Provider
         value={{
           savedVideosList,
+          isDarkTheme,
+          toggleTheme: this.toggleTheme,
           addVideoItem: this.addVideoItem,
         }}
       >

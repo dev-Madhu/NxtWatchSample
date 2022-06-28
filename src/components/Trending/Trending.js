@@ -10,6 +10,7 @@ import TrendingItem from '../TrendingItem/TrendingItem'
 import TabItem from '../TabItem'
 import HeaderRoute from '../HeaderRoute'
 import './Trending.css'
+import SavedContext from '../../context/SavedContext'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -91,17 +92,26 @@ class Trending extends Component {
   renderTrendingVideos = () => {
     const {trendingData} = this.state
     return (
-      <ul className="blog-list-container">
-        <div className="trending-header">
-          <div className="fire-icon">
-            <HiFire color=" #ff0000" size="30" />
-          </div>
-          <h1 className="trending-title">Trending</h1>
-        </div>
-        {trendingData.map(item => (
-          <TrendingItem blogData={item} key={item.id} />
-        ))}
-      </ul>
+      <SavedContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          const bgBlock = isDarkTheme ? 'trending-bg' : null
+          const trendBg = isDarkTheme ? 'trend-headBg' : null
+          return (
+            <ul className={`blog-list-container ${bgBlock}`}>
+              <div className={`trending-header ${trendBg}`}>
+                <div className="fire-icon">
+                  <HiFire color=" #ff0000" size="30" />
+                </div>
+                <h1 className="trending-title">Trending</h1>
+              </div>
+              {trendingData.map(item => (
+                <TrendingItem blogData={item} key={item.id} />
+              ))}
+            </ul>
+          )
+        }}
+      </SavedContext.Consumer>
     )
   }
 

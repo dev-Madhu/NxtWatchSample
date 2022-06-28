@@ -12,9 +12,10 @@ export const SectionsContainer = styled.div`
   width: 30%;
   max-width: 250px;
   display: flex;
+  background-color: ${props => (props.bgColor ? '#181818' : '#ffff')};
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  min-height: 100vh;
 `
 export const SectionCont = styled.div`
   display: flex;

@@ -12,17 +12,18 @@ import './SavedVideos.css'
 const SavedVideos = () => (
   <SavedContext.Consumer>
     {value => {
-      const {savedVideosList} = value
+      const {savedVideosList, isDarkTheme} = value
       console.log(savedVideosList)
       const showEmptyView = savedVideosList.length === 0
-
+      const trendBg = isDarkTheme ? 'trend-headBg' : null
+      const saveBg = isDarkTheme ? 'saved-bg' : null
       return (
         <>
           <HeaderRoute />
           <div className="saved-view">
             <TabItem />
             {showEmptyView ? (
-              <div className="saved-container">
+              <div className={`saved-container ${saveBg}`}>
                 <img
                   src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
                   alt="no saved videos"
@@ -35,7 +36,7 @@ const SavedVideos = () => (
               </div>
             ) : (
               <div className="saved-list-container">
-                <div className="trending-header">
+                <div className={`trending-header ${trendBg}`}>
                   <div className="fire-icon">
                     <MdPlaylistAdd color=" #ff0000" size="30" />
                   </div>

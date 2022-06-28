@@ -22,7 +22,7 @@ const VideoItem = props => {
     <>
       <img src={thumbnailUrl} className="thumbnail" alt="video thumbnail" />
       <div className="video-info">
-        <img src={imageUrl} className="cricket-logo" alt="profile" />
+        <img src={imageUrl} className="cricket-logo" alt="channel logo" />
         <div className="match-details">
           <h1 className="title">{title}</h1>
           <p className="name">{name}</p>

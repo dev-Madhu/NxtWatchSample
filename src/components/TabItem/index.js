@@ -14,6 +14,7 @@ import {
   Icon,
 } from './StyledComponents'
 import './index.css'
+import SavedContext from '../../context/SavedContext'
 
 const TabItem = () => {
   const renderDetailsSection = () => (
@@ -44,35 +45,44 @@ const TabItem = () => {
   )
 
   return (
-    <SectionsContainer>
-      <div className="sections-container">
-        <Link className="section-link" to="/">
-          <button type="button" className="section-btn">
-            <AiFillHome size="30" color="#181818" />
-            <h1 className="head">Home</h1>
-          </button>
-        </Link>
-        <Link className="section-link" to="/trending">
-          <button type="button" className="section-btn">
-            <HiFire size="30" color="#181818" />
-            <h1 className="head">Trending</h1>
-          </button>
-        </Link>
-        <Link className="section-link" to="/gaming">
-          <button type="button" className="section-btn">
-            <SiYoutubegaming size="30" color="#181818" />
-            <h1 className="head">Gaming</h1>
-          </button>
-        </Link>
-        <Link className="section-link" to="/saved-videos">
-          <button type="button" className="section-btn">
-            <MdPlaylistAdd size="30" color="#181818" />
-            <h1 className="head">Saved Videos</h1>
-          </button>
-        </Link>
-      </div>
-      {renderDetailsSection()}
-    </SectionsContainer>
+    <SavedContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        const headClass = isDarkTheme ? 'h1-head' : null
+
+        return (
+          <SectionsContainer bgColor={isDarkTheme}>
+            <div className="sections-container">
+              <Link className="section-link" to="/">
+                <button type="button" className={`section-btn ${headClass}`}>
+                  <AiFillHome size="30" />
+                  <h1 className="head">Home</h1>
+                </button>
+              </Link>
+              <Link className="section-link" to="/trending">
+                <button type="button" className={`section-btn ${headClass}`}>
+                  <HiFire size="30" />
+                  <h1 className="head">Trending</h1>
+                </button>
+              </Link>
+              <Link className="section-link" to="/gaming">
+                <button type="button" className={`section-btn ${headClass}`}>
+                  <SiYoutubegaming size="30" />
+                  <h1 className="head">Gaming</h1>
+                </button>
+              </Link>
+              <Link className="section-link" to="/saved-videos">
+                <button type="button" className={`section-btn ${headClass}`}>
+                  <MdPlaylistAdd size="30" />
+                  <h1 className="head">Saved Videos</h1>
+                </button>
+              </Link>
+            </div>
+            {renderDetailsSection()}
+          </SectionsContainer>
+        )
+      }}
+    </SavedContext.Consumer>
   )
 }
 
