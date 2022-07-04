@@ -13,7 +13,8 @@ export const HomeContainer = styled.div`
   background-color: #ffff;
   display: flex;
   align-items: center;
-  width: 90%;
+  background-color: ${props => (props.bgCol ? '#000' : '#fff')};
+  width: 100%;
 `
 export const TypeName = styled.h1`
   font-size: 16px;
@@ -75,4 +76,14 @@ export const Tagline = styled.p`
 export const Image = styled.img`
   width: 30px;
   height: 30px;
+`
+
+export const Banner = styled.div`
+  height: 35vh;
+  width: 100%;
+  background-color: #ebebeb;
+  background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
 `

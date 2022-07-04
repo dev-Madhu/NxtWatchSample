@@ -1,14 +1,7 @@
-.banner-view {
-  height: 33vh;
-  width: 100%;
-  background-color: #ebebeb;
-  background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-}
+
 .banner-box {
   width: 44%;
+  padding-left: 20px;
 }
 .banner-description {
   font-size: 20px;
@@ -64,6 +57,10 @@
   padding: 20px;
   background-color: #f1f1f1;
   min-height: 120vh;
+}
+
+.active-color {
+  background-color: #000;
 }
 .main-view {
   display: flex;
@@ -138,6 +135,41 @@
   border: none;
   margin-top: 18px;
   margin-right: 18px;
+  outline: none;
+  cursor: pointer;
+}
+.no-search-box {
+margin-top:30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.no-search {
+  width: 60%;
+}
+.no-search-title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #00306e;
+  font-family: 'Roboto';
+}
+
+.no-search-text {
+  font-size: 20px;
+  font-weight: 300;
+  color: #64748b;
+  font-family: 'Roboto';
+}
+.no-search-btn {
+  background-color: #4f46e5;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 5px;
+  padding: 8px 24px;
+  border: none;
   outline: none;
   cursor: pointer;
 }

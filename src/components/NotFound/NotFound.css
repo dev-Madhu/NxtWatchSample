@@ -4,19 +4,24 @@
   justify-content: center;
   align-items: center;
   background-color: #ebebeb;
+  color: #000;
   height: 100vh;
+  width: 100%;
+}
+.not-bg {
+  background-color: #0f0f0f;
+  color: #ebebeb;
 }
 .not-found-img {
   width: 30%;
   top: 30%;
 }
 .not-found-heading {
-  color: black;
   font-size: 36px;
   font-weight: 600;
 }
 .description {
-  color: black;
+  font-size: 20px;
 }
 
 .not-found-view {

@@ -23,7 +23,10 @@ const SavedVideos = () => (
           <div className="saved-view">
             <TabItem />
             {showEmptyView ? (
-              <div className={`saved-container ${saveBg}`}>
+              <div
+                className={`saved-container ${saveBg}`}
+                data-testid="savedVideos"
+              >
                 <img
                   src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
                   alt="no saved videos"

@@ -50,7 +50,7 @@ export const VideoLikes = styled.div`
   justify-content: space-between;
 `
 
-export const LikeBox = styled.button`
+export const LikeBox1 = styled.button`
   display: flex;
   align-items: center;
   margin-right: 10px;
@@ -58,7 +58,16 @@ export const LikeBox = styled.button`
   outline: none;
   border: none;
   cursor: pointer;
+  color: ${props => (props.col ? '#3b82f6' : '#475569')};
   background-color: transparent;
+`
+
+export const LikeBox2 = styled(LikeBox1)`
+  color: ${props => (props.col ? '#3b82f6' : '#475569')};
+`
+
+export const LikeBox3 = styled(LikeBox1)`
+  color: ${props => (props.col ? '#3b82f6' : '#475569')};
 `
 export const MajorBox = styled.div`
   display: flex;
@@ -66,7 +75,6 @@ export const MajorBox = styled.div`
   align-self: flex-end;
 `
 export const LikeText = styled.p`
-  color: #475569;
   font-family: 'Roboto';
   font-size: 18px;
   padding-left: 4px;

@@ -54,25 +54,37 @@ const TabItem = () => {
           <SectionsContainer bgColor={isDarkTheme}>
             <div className="sections-container">
               <Link className="section-link" to="/">
-                <button type="button" className={`section-btn ${headClass}`}>
+                <button
+                  type="button"
+                  className={`section-btn ${headClass} icon`}
+                >
                   <AiFillHome size="30" />
                   <h1 className="head">Home</h1>
                 </button>
               </Link>
               <Link className="section-link" to="/trending">
-                <button type="button" className={`section-btn ${headClass}`}>
+                <button
+                  type="button"
+                  className={`section-btn ${headClass} icon`}
+                >
                   <HiFire size="30" />
                   <h1 className="head">Trending</h1>
                 </button>
               </Link>
               <Link className="section-link" to="/gaming">
-                <button type="button" className={`section-btn ${headClass}`}>
+                <button
+                  type="button"
+                  className={`section-btn ${headClass} icon`}
+                >
                   <SiYoutubegaming size="30" />
                   <h1 className="head">Gaming</h1>
                 </button>
               </Link>
               <Link className="section-link" to="/saved-videos">
-                <button type="button" className={`section-btn ${headClass}`}>
+                <button
+                  type="button"
+                  className={`section-btn ${headClass} icon`}
+                >
                   <MdPlaylistAdd size="30" />
                   <h1 className="head">Saved Videos</h1>
                 </button>

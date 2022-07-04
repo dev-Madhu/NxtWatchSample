@@ -1,8 +1,12 @@
 .game-list-container {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction:column;
   width: 90%;
+}
+.gaming-list{
+    display:flex;
+    flex-wrap:wrap;
+    padding:0
 }
 .game-bgColor{
     background-color:#000;

@@ -1,4 +1,4 @@
-import {Route, Redirect, Switch} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import {v4} from 'uuid'
 import {Component} from 'react'
 import './App.css'
@@ -47,8 +47,7 @@ class App extends Component {
           <ProtectedRoute exact path="/trending" component={Trending} />
           <ProtectedRoute exact path="/gaming" component={Gaming} />
           <ProtectedRoute exact path="/saved-videos" component={SavedVideos} />
-          <Route exact path="/not-found" component={NotFound} />
-          <Redirect to="/not-found" />
+          <Route component={NotFound} />
         </Switch>
       </SavedContext.Provider>
     )

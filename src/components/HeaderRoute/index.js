@@ -73,7 +73,7 @@ const HeaderRoute = props => {
                       {close => (
                         <div className="modal-container">
                           <p className="pop-up-text">
-                            Are you sure,you want to logout?
+                            Are you sure, you want to logout?
                           </p>
                           <div>
                             <button

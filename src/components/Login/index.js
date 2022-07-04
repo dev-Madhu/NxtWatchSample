@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
+import SavedContext from '../../context/SavedContext'
 
 import './index.css'
 
@@ -116,32 +117,56 @@ class Login extends Component {
     }
 
     return (
-      <div className="login-form-container">
-        <form className="form-container" onSubmit={this.submitForm}>
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-            className="login-website-logo-desktop-img"
-            alt="website logo"
-          />
-          <div className="input-container">{this.renderUsernameField()}</div>
-          <div className="input-container">{this.renderPasswordField()}</div>
-          <div className="checkbox-section">
-            <input
-              type="checkbox"
-              className="check"
-              id="input-checkbox"
-              onChange={this.onChangeCheckBox}
-            />
-            <label htmlFor="input-checkbox" className="show-password">
-              Show Password
-            </label>
-          </div>
-          <button type="submit" className="login-button">
-            Login
-          </button>
-          {showSubmitError && <p className="error-message">*{errorMsg}</p>}
-        </form>
-      </div>
+      <SavedContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+
+          const websiteLogo = isDarkTheme
+            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+          const loginClass = isDarkTheme ? 'login-bg' : null
+          const loginForm = isDarkTheme ? 'login-form-bg' : null
+          const inpClass = isDarkTheme ? 'input-col' : null
+
+          return (
+            <div className={`login-form-container ${loginClass}`}>
+              <form
+                className={`form-container ${loginForm}`}
+                onSubmit={this.submitForm}
+              >
+                <img
+                  src={websiteLogo}
+                  className="login-website-logo-desktop-img"
+                  alt="website logo"
+                />
+                <div className={`input-container ${inpClass}`}>
+                  {this.renderUsernameField()}
+                </div>
+                <div className={`input-container ${inpClass}`}>
+                  {this.renderPasswordField()}
+                </div>
+                <div className="checkbox-section">
+                  <input
+                    type="checkbox"
+                    className="check"
+                    id="input-checkbox"
+                    onChange={this.onChangeCheckBox}
+                  />
+                  <label htmlFor="input-checkbox" className="show-password">
+                    Show Password
+                  </label>
+                </div>
+                <button type="submit" className="login-button">
+                  Login
+                </button>
+                {showSubmitError && (
+                  <p className="error-message">*{errorMsg}</p>
+                )}
+              </form>
+            </div>
+          )
+        }}
+      </SavedContext.Consumer>
     )
   }
 }

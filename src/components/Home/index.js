@@ -7,9 +7,10 @@ import {IoMdClose} from 'react-icons/io'
 import VideoItem from '../VideoItem/VideoItem'
 import TabItem from '../TabItem'
 import HeaderRoute from '../HeaderRoute'
+import SavedContext from '../../context/SavedContext'
 import './index.css'
 
-import {ResponsiveContainer, HomeContainer} from './StyledComponents'
+import {ResponsiveContainer, HomeContainer, Banner} from './StyledComponents'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -63,7 +64,7 @@ class Home extends Component {
         searchInput: '',
       })
     }
-    if (response.status === 404) {
+    if (response.status === 401) {
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })
@@ -111,60 +112,99 @@ class Home extends Component {
     )
   }
 
-  renderBannerView = () => {
-    const {showComponent} = this.state
-    return (
-      <div className="main-view">
-        {!showComponent && (
-          <div className="banner-view" data-testid="banner">
-            <button
-              className="close-btn"
-              type="button"
-              data-testid="close"
-              onClick={this.onClickCloseBtn}
-            >
-              <IoMdClose size="30" color="#231f20" />
-            </button>
-            <div className="banner-box">
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                className="logo-theme"
-                alt="nxt watch logo"
-              />
-              <p className="banner-description">
-                Buy Nxt Watch Premium prepaid plans with UPI
-              </p>
-              <button type="button" className="get-btn">
-                GET IT NOW
-              </button>
+  renderBannerView = () => (
+    <SavedContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        const activeName = isDarkTheme ? 'active-color' : null
+        const {showComponent} = this.state
+        return (
+          <div className="main-view" testid="home">
+            {!showComponent && (
+              <Banner data-testid="banner">
+                <button
+                  className="close-btn"
+                  type="button"
+                  data-testid="close"
+                  onClick={this.onClickCloseBtn}
+                >
+                  <IoMdClose size="30" color="#231f20" />
+                </button>
+                <div className="banner-box">
+                  <img
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                    className="logo-theme"
+                    alt="nxt watch logo"
+                  />
+                  <p className="banner-description">
+                    Buy Nxt Watch Premium prepaid plans with UPI
+                  </p>
+                  <button type="button" className="get-btn">
+                    GET IT NOW
+                  </button>
+                </div>
+              </Banner>
+            )}
+            <div className={`main-video-section ${activeName}`}>
+              {this.renderVideosView()}
             </div>
           </div>
-        )}
-        <div className="main-video-section">{this.renderVideosView()}</div>
-      </div>
-    )
+        )
+      }}
+    </SavedContext.Consumer>
+  )
+
+  onClickResearchBtn = () => {
+    this.getHomeVideos()
   }
 
   renderHomeVideosView = () => {
-    const {homeVideos} = this.state
+    const {searchInput, homeVideos} = this.state
+    const searchedResults = homeVideos.filter(item =>
+      item.title.toLowerCase().includes(searchInput),
+    )
+    const items = searchedResults.length === 0
 
     return (
-      <ul className="videos-list">
-        {homeVideos.map(videoItem => (
-          <VideoItem key={videoItem.id} videoDetails={videoItem} />
-        ))}
-      </ul>
+      <>
+        {items ? (
+          <div className="no-search-box">
+            <img
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+              alt="no videos"
+              className="no-search"
+            />
+            <h1 className="no-search-title">No Search results found</h1>
+            <p className="no-search-text">
+              Try different key words or remove search filter
+            </p>
+            <button
+              type="button"
+              className="no-search-btn"
+              onClick={this.onClickResearchBtn}
+            >
+              Retry
+            </button>
+          </div>
+        ) : (
+          <ul className="videos-list">
+            {searchedResults.map(videoItem => (
+              <VideoItem key={videoItem.id} videoDetails={videoItem} />
+            ))}
+          </ul>
+        )}
+      </>
     )
   }
 
-  renderLoadingView = () => (
+  renderHomeLoading = () => (
     <div className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   )
 
-  renderFailureView = () => (
-    <div className="failure-container">
+  renderHomeFailure = () => (
+    <div className="failure-container" testid="failure">
       <img
         src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
         alt="failure view"
@@ -183,12 +223,12 @@ class Home extends Component {
   renderAllViews = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
+      case apiStatusConstants.inProgress:
+        return this.renderHomeLoading()
       case apiStatusConstants.success:
         return this.renderHomeVideosView()
       case apiStatusConstants.failure:
-        return this.renderFailureView()
-      case apiStatusConstants.inProgress:
-        return this.renderLoadingView()
+        return this.renderHomeFailure()
       default:
         return null
     }
@@ -198,15 +238,23 @@ class Home extends Component {
     const {apiStatus} = this.state
     console.log(apiStatus)
     return (
-      <>
-        <HeaderRoute />
-        <HomeContainer>
-          <ResponsiveContainer>
-            <TabItem />
-            {this.renderBannerView()}
-          </ResponsiveContainer>
-        </HomeContainer>
-      </>
+      <SavedContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+
+          return (
+            <>
+              <HeaderRoute />
+              <HomeContainer bgCol={isDarkTheme}>
+                <ResponsiveContainer>
+                  <TabItem />
+                  {this.renderBannerView()}
+                </ResponsiveContainer>
+              </HomeContainer>
+            </>
+          )
+        }}
+      </SavedContext.Consumer>
     )
   }
 }

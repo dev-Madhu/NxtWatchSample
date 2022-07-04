@@ -101,9 +101,11 @@ class Gaming extends Component {
               </div>
               <h1 className="trending-title">Gaming</h1>
             </div>
-            {gamingData.map(item => (
-              <GamingVideoItem gameData={item} key={item.id} />
-            ))}
+            <ul className="gaming-list">
+              {gamingData.map(item => (
+                <GamingVideoItem gameData={item} key={item.id} />
+              ))}
+            </ul>
           </div>
         )
       }}
