@@ -38,17 +38,18 @@ const SavedVideos = () => (
                 </p>
               </div>
             ) : (
-              <div className="saved-list-container">
+              <ul className={`saved-list-container ${saveBg}`}>
                 <div className={`trending-header ${trendBg}`}>
                   <div className="fire-icon">
                     <MdPlaylistAdd color=" #ff0000" size="30" />
                   </div>
                   <h1 className="trending-title">Saved Videos</h1>
                 </div>
+
                 {savedVideosList.map(item => (
                   <TrendingItem blogData={item} key={item.num} />
                 ))}
-              </div>
+              </ul>
             )}
           </div>
         </>

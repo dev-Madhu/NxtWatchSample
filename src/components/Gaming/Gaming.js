@@ -51,9 +51,7 @@ class Gaming extends Component {
         gamingData: formattedData,
         apiStatus: apiStatusConstants.success,
       })
-    }
-
-    if (response.ok !== true) {
+    } else {
       this.setState({apiStatus: apiStatusConstants.failure})
     }
   }

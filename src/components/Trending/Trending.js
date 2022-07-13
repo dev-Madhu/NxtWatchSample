@@ -56,9 +56,7 @@ class Trending extends Component {
         trendingData: formattedData,
         apiStatus: apiStatusConstants.success,
       })
-    }
-    if (response.status === 404) {
-      console.log(response.status)
+    } else {
       this.setState({apiStatus: apiStatusConstants.failure})
     }
   }

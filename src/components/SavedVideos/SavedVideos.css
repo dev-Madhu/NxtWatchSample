@@ -28,7 +28,6 @@
 }
 .saved-view {
   display: flex;
-  align-items: center;
 }
 
 .trending-title {
@@ -57,9 +56,12 @@
 .saved-list-container {
   display: flex;
   flex-direction: column;
+list-style-type:none;
   width: 90%;
 }
 
+
 .trend-headBg {
   background-color: #212121;
+  color:#fff;
 }
